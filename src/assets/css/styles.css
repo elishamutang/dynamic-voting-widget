@@ -1,0 +1,54 @@
+:root {
+    --slate-200: oklch(92.9% 0.013 255.508);
+    --slate-100: oklch(96.8% 0.007 247.896);
+    --slate-300: oklch(86.9% 0.022 252.894);
+    --stone-200: oklch(92.3% 0.003 48.717);
+    --stone-400: oklch(70.9% 0.01 56.259);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid var(--stone-400);
+    margin: 1rem;
+    padding: 0.5rem;
+    border-radius: 2rem;
+    background-color: var(--stone-200);
+    box-shadow: 0 1px 3px grey;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 2rem 1rem;
+    margin-top: 1rem;
+}
+
+.button {
+    border: 1px solid black;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    background-color: white;
+    box-shadow: 0 1px 2px 0 lightslategrey;
+}
+
+.button:hover {
+    cursor: pointer
+}
