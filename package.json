@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/elishamutang/dynamic-voting-widget/issues"
   },
-  "homepage": "https://github.com/elishamutang/dynamic-voting-widget#readme"
+  "homepage": "https://github.com/elishamutang/dynamic-voting-widget#readme",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.7.2"
+  }
 }

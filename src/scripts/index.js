@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', async (e) => {
         data.forEach((item) => {
             const card = CardComp({
                 'src' : item.image,
-                'alt' : '',
                 'title' : item.title,
                 'description' : item.description,
                 'up' : item.votes.up,
