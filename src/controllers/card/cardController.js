@@ -26,3 +26,22 @@ export const closeModal = (e) => {
     const dialog = e.currentTarget.parentElement.parentElement.parentElement
     dialog.close();
 }
+
+export const submitHandler = (e) => {
+    e.preventDefault()
+
+    const formData = new FormData(e.target)
+    const dialog = e.target.parentElement
+
+    const formInputs = {}
+    for(const [name, val] of formData.entries()) {
+        formInputs[name] = val
+    }
+
+    console.log(formInputs)
+
+    const formId = e.target.id
+    localStorage.setItem(formId, JSON.stringify(formInputs))
+
+    dialog.close()
+}
