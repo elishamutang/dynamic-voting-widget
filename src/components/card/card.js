@@ -18,8 +18,8 @@ export default function CardComp({...props}) {
             </div>
             <div class="action-btns">
                 <a class="button cta" href=${props.button.url} target="_blank">${props.button.label}</a>
-                <dialog closedby="closerequest" id="${props.id}">
-                    <form class="edit-content">
+                <dialog closedby="closerequest" id="dialog-${props.id}">
+                    <form class="edit-content" action="/" id="form-${props.id}">
                         <h2 class="modal-title">Edit Card</h2>
                     
                         <label for="title">Title: </label>

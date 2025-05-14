@@ -1,6 +1,6 @@
 import { getData } from './loadData.js'
 import CardComp from '../components/card/card.js'
-import { voteHandler, showModal, closeModal } from '../controllers/card/cardController.js'
+import { voteHandler, showModal, closeModal, submitHandler } from '../controllers/card/cardController.js'
 
 document.addEventListener('DOMContentLoaded', async (e) => {
     console.log('DOM fully parsed')
@@ -13,6 +13,10 @@ document.addEventListener('DOMContentLoaded', async (e) => {
         // Add loader
         const data = await getData()
         console.log(data)
+
+        // Check for localStorage
+        const localData = localStorage.getItem('myData')
+        console.log(localData)
 
         data.forEach((item, idx) => {
             const card = CardComp({
@@ -34,14 +38,21 @@ document.addEventListener('DOMContentLoaded', async (e) => {
             elem.addEventListener('click', voteHandler)
         })
 
-        // Open and close modal for editing.
+        // Open modal for editing.
         Array.from(document.getElementsByClassName('open-modal')).forEach((elem) => {
             elem.addEventListener('click', showModal)
         })
 
+        // Close modal.
         Array.from(document.getElementsByClassName('cancel-changes')).forEach((elem) => {
             elem.addEventListener('click', closeModal)
         })
+
+        // Detect form submission and save in localStorage (data persistence)
+        Array.from(document.getElementsByClassName('edit-content')).forEach((elem) => {
+            elem.addEventListener('submit', submitHandler)
+        })
+
 
     } catch (error) {
         // Display error page.
