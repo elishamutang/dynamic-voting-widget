@@ -14,19 +14,25 @@ document.addEventListener('DOMContentLoaded', async (e) => {
         const data = await getData()
         console.log(data)
 
-        // Check for localStorage
-        const localData = localStorage.getItem('myData')
-        console.log(localData)
-
         data.forEach((item, idx) => {
+
+            // Set existing data in localStorage.
+            localStorage.setItem(`card-${idx}`, JSON.stringify(item))
+
+            const localData = JSON.parse(localStorage.getItem(`card-${idx}`))
+            console.log(localData)
+
             const card = CardComp({
                 'id' : idx,
-                'src' : item.image,
-                'title' : item.title,
-                'description' : item.description,
-                'up' : item.votes.up,
-                'down' : item.votes.down,
-                'button' : item.button
+                'src' : localData.image,
+                'title' : localData.title,
+                'description' : localData.description,
+                'up' : localData.votes.up,
+                'down' : localData.votes.down,
+                'button' : {
+                    'label' : localData.button.label,
+                    'url' : localData.button.url
+                }
             })
 
             body.append(card)

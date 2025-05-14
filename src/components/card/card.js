@@ -2,6 +2,7 @@ export default function CardComp({...props}) {
 
     const card = document.createElement('div')
     card.className = 'card'
+    card.id = `card-${props.id}`
 
     const totalVotes = props.up - props.down
 
@@ -29,7 +30,7 @@ export default function CardComp({...props}) {
                         <input type="text" name="description" value="${props.description}"/>
                         
                         <label for="button-label">Button Label: </label>
-                        <input type="text" name="button-label" value="${props.button.label}"/>
+                        <input type="text" name="buttonLabel" value="${props.button.label}"/>
                         <div class="form-btns">
                             <button type="submit" class="save-changes">Save</button>
                             <button type="button" class="cancel-changes">Cancel</button>

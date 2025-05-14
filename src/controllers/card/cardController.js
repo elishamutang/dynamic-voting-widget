@@ -15,6 +15,10 @@ export const voteHandler = (e) => {
     }
 
     totalVotesElem.textContent = totalVotes.toString()
+
+    const cardElem = voteBtnsDiv.parentElement
+
+    const localData = localStorage.getItem(cardElem.id, )
 }
 
 export const showModal = (e) => {
@@ -42,6 +46,8 @@ export const submitHandler = (e) => {
 
     const formId = e.target.id
     localStorage.setItem(formId, JSON.stringify(formInputs))
+
+    // Update fields after save.
 
     dialog.close()
 }
