@@ -28,7 +28,25 @@ export const showModal = (e) => {
 }
 
 export const closeModal = (e) => {
-    const dialog = e.currentTarget.parentElement.parentElement.parentElement
+    const dialog = e.target.form.parentElement
+    const form = e.target.form
+    const formData = new FormData(form)
+
+    const cardId = form.id.split('-')[1]
+    const localData = JSON.parse(localStorage.getItem(`card-${cardId}`))
+
+    for(const [name, val] of formData.entries()) {
+        if(!val) {
+            if(name === 'buttonLabel') {
+                form.querySelector(`input[name=${name}]`).value = localData.button.label
+            } else if(name === 'buttonUrl') {
+                form.querySelector(`input[name=${name}]`).value = localData.button.url
+            } else {
+                form.querySelector(`input[name=${name}]`).value = localData[name]
+            }
+        }
+    }
+
     dialog.close();
 }
 
@@ -62,4 +80,10 @@ export const submitHandler = (e) => {
 
     localStorage.setItem(cardElemId, JSON.stringify(localData))
     dialog.close()
+}
+
+export const resetData = (e, originalData) => {
+    const cardId = e.target.parentElement.parentElement.id.split('-')[1]
+
+    console.log(originalData[`card-${cardId}`])
 }
