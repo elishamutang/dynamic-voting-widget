@@ -2,23 +2,24 @@ export const voteHandler = (e) => {
     const voteBtnsDiv = e.currentTarget.parentElement
     const totalVotesElem = voteBtnsDiv.querySelector('p.total-votes')
 
-    let totalVotes = parseInt(totalVotesElem.textContent)
-
-    console.log(totalVotes);
+    const cardElem = voteBtnsDiv.parentElement.parentElement
+    const localData = JSON.parse(localStorage.getItem(cardElem.id))
 
     const buttonClicked = e.currentTarget
 
     if (buttonClicked.classList.contains('up')) {
-        totalVotes += 1
+        localData.votes.up += 1
     } else {
-        totalVotes -= 1
+        localData.votes.down += 1
     }
 
-    totalVotesElem.textContent = totalVotes.toString()
+    const totalVotes = localData.votes.up - localData.votes.down
 
-    const cardElem = voteBtnsDiv.parentElement
+    // Store new values
+    localStorage.setItem(cardElem.id, JSON.stringify(localData))
 
-    const localData = localStorage.getItem(cardElem.id, )
+    // Update display
+    totalVotesElem.textContent = `${totalVotes}`.toString()
 }
 
 export const showModal = (e) => {
@@ -45,9 +46,20 @@ export const submitHandler = (e) => {
     console.log(formInputs)
 
     const formId = e.target.id
-    localStorage.setItem(formId, JSON.stringify(formInputs))
+    const cardElemId = `card-${formId.split('-')[1]}`
 
-    // Update fields after save.
+    // Update display
+    const cardElem = document.getElementById(cardElemId)
+    cardElem.querySelector('.title').textContent = formInputs.title
+    cardElem.querySelector('.description').textContent = formInputs.description
+    cardElem.querySelector('.cta').textContent = formInputs.buttonLabel
 
+    // Overwrite form fields and save to localStorage.
+    const localData = JSON.parse(localStorage.getItem(cardElemId))
+    localData.title = formInputs.title
+    localData.description = formInputs.description
+    localData.button.label = formInputs.buttonLabel
+
+    localStorage.setItem(cardElemId, JSON.stringify(localData))
     dialog.close()
 }
