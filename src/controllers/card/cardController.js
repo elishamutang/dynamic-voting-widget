@@ -83,7 +83,31 @@ export const submitHandler = (e) => {
 }
 
 export const resetData = (e, originalData) => {
-    const cardId = e.target.parentElement.parentElement.id.split('-')[1]
+    const id = e.target.form.id.split('-')[1]
+    const cardId = `card-${id}`
+    const contentDiv = document.getElementById(cardId).querySelector('.content')
 
-    console.log(originalData[`card-${cardId}`])
+    const originalCardData = originalData[cardId]
+
+    // Reset content
+    for(const [key, val] of Object.entries(originalCardData)) {
+        if(key !== 'image') {
+            if(key === 'votes') {
+                contentDiv.querySelector('.total-votes').textContent = val.up - val.down
+            } else if(key === 'button') {
+                const ctaBtn = contentDiv.querySelector('.cta')
+                ctaBtn.textContent = val.label
+                ctaBtn.href = val.url
+            } else {
+                contentDiv.querySelector(`.${key}`).textContent = val
+            }
+        }
+    }
+
+    // Overwrite localStorage for particular card.
+    localStorage.setItem(cardId, JSON.stringify(originalData[cardId]))
+
+    // Close dialog
+    const dialog = document.getElementById(`dialog-${id}`)
+    dialog.close()
 }
