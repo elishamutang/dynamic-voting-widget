@@ -22,7 +22,9 @@
 
 body {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .card {
@@ -35,7 +37,7 @@ body {
     background-color: var(--stone-300);
     box-shadow: 0 2px 3px var(--slate-400);
     position: relative;
-    max-width: 341px;
+    max-width: 350px;
 }
 
 .card-img {
@@ -48,6 +50,7 @@ body {
 
 .title {
     font-weight: 500;
+    overflow: auto;
 }
 
 .content {
@@ -60,7 +63,7 @@ body {
 
 .content > *,
 .voteBtns > * {
-    color: var(--stone-800);
+    color: var(--stone-700);
 }
 
 button,
@@ -71,6 +74,7 @@ button,
     text-align: center;
     text-decoration: none;
     font-weight: bold;
+    transition: 0.3s;
 }
 
 .vote-btn {
@@ -85,6 +89,12 @@ button,
     flex: 1;
 }
 
+.cta:hover {
+    border-color: var(--stone-600);
+    box-shadow: 0 0 0 0;
+    filter: brightness(1.2);
+}
+
 button:hover,
 .button:hover {
     cursor: pointer
@@ -94,6 +104,11 @@ button:hover,
 .open-modal {
     background-color: var(--stone-400);
     box-shadow: 0 2px 1px 0 var(--stone-600);
+}
+
+.open-modal:hover {
+    border-color: var(--stone-700);
+    box-shadow: 0 0 0 0;
 }
 
 .voteBtns {
@@ -140,6 +155,14 @@ dialog[open] {
     flex-direction: column;
     background-color: var(--modal-bg);
     justify-content: center;
+    opacity: 1;
+    transition: 0.3s;
+}
+
+@starting-style {
+    dialog[open] {
+        opacity: 0;
+    }
 }
 
 .edit-content {
@@ -205,22 +228,9 @@ dialog[open] {
     font-size: 1rem;
 }
 
-/* Media queries for responsiveness */
-/*@media only screen and (min-width: 500px) {*/
-/*    .card {*/
-/*        max-width: 80%;*/
-/*        align-items: center;*/
-/*    }*/
-/*}*/
-
-/*@media only screen and (min-width: 600px) {*/
-/*    .card {*/
-/*        max-width: 50%;*/
-/*    }*/
-/*}*/
-
-/*@media only screen and (min-width: 1100px) {*/
-/*    .card {*/
-/*        max-width: 30%;*/
-/*    }*/
-/*}*/
+.save-changes:hover,
+.cancel-changes:hover{
+    box-shadow: 0 0 0 0;
+    border-color: 1px solid var(--stone-800);
+    filter: brightness(1.1);
+}
