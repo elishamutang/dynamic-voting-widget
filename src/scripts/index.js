@@ -14,7 +14,11 @@ document.addEventListener('DOMContentLoaded', async (e) => {
         const data = await getData()
         console.log(data)
 
+        // Store original API data according to each card respectively.
+        const originalData = {}
+
         data.forEach((item, idx) => {
+            originalData[`card-${idx}`] = item
 
             // Check if existing data exists
             const localData = JSON.parse(localStorage.getItem(`card-${idx}`))
@@ -50,6 +54,11 @@ document.addEventListener('DOMContentLoaded', async (e) => {
         })
 
         // Reset to original API data.
+        Array.from(document.getElementsByClassName('reset-data')).forEach((elem) => {
+            elem.addEventListener('click', (e) => {
+                cardController.resetData(e, originalData)
+            })
+        })
 
 
     } catch (error) {
