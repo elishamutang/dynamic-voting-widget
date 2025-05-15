@@ -20,9 +20,12 @@ export default function CardComp(id, data) {
             <div class="action-btns">
                 <a class="button cta" href=${data.button.url} target="_blank">${data.button.label}</a>
                 <dialog closedby="closerequest" id="dialog-${id}">
-                    <form class="edit-content" action="/" id="form-${id}">
-                        <h2 class="modal-title">Edit Card</h2>
-                    
+                    <form class="edit-content" action="/" id="form-${id}" method="dialog">
+                        <div class="form-header">
+                            <h2 class="modal-title">Edit Card</h2>
+                            <button type="button" class="reset-data">Reset</button>
+                        </div>
+                        
                         <label for="title">Title: </label>
                         <input type="text" name="title" value="${data.title}" required maxlength="20"/>
                         
@@ -30,7 +33,11 @@ export default function CardComp(id, data) {
                         <input type="text" name="description" value="${data.description}" required/>
                         
                         <label for="button-label">Button Label: </label>
-                        <input type="text" name="buttonLabel" value="${data.button.label}" required maxlength="20"/>
+                        <input type="text" name="buttonLabel" value="${data.button.label}" required maxlength="50"/>
+                        
+                        <label for="button-link">Button Link: </label>
+                        <input type="url" name="buttonUrl" value="${data.button.url}" required/>
+                        
                         <div class="form-btns">
                             <button type="submit" class="save-changes">Save</button>
                             <button type="button" class="cancel-changes">Cancel</button>
