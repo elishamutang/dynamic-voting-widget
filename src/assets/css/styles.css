@@ -24,19 +24,40 @@
 
 body {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    & main {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }
 
-#sort {
-    border: 4px solid var(--stone-400);
+.sort {
+    border: 2px solid var(--stone-400);
+    border-radius: 1rem;
     margin: 1rem;
     padding: 1rem;
     background-color: var(--stone-800);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    max-width: 350px;
 
     & label {
         color: white;
+    }
+
+    & select {
+        background-color: var(--stone-200);
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+        text-align: center;
+    }
+
+    & button {
+        background-color: var(--stone-400);
     }
 }
 
