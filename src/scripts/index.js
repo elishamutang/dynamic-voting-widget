@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
     console.log('DOM fully parsed')
 
     // Target body
-    const body = document.querySelector('body')
+    const main = document.querySelector('main')
 
     // Load data.
     try {
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
             const localData = JSON.parse(localStorage.getItem(`card-${idx}`))
 
             const card = CardComp(idx,localData ? localData : item)
-            body.append(card)
+            main.append(card)
 
             // Save data in local storage
             if(!localData) {
@@ -58,6 +58,11 @@ document.addEventListener('DOMContentLoaded', async (e) => {
             elem.addEventListener('click', (e) => {
                 cardController.resetData(e, originalData)
             })
+        })
+
+        // Sorting
+        Array.from(document.getElementsByClassName('sort')).forEach((elem) => {
+            elem.addEventListener('submit', cardController.sortData)
         })
 
 
