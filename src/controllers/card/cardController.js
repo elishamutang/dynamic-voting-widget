@@ -1,3 +1,5 @@
+import quickSort from '../../scripts/quicksort.js'
+
 export const voteHandler = (e) => {
     const voteBtnsDiv = e.currentTarget.parentElement
     const totalVotesElem = voteBtnsDiv.querySelector('p.total-votes')
@@ -110,4 +112,30 @@ export const resetData = (e, originalData) => {
     // Close dialog
     const dialog = document.getElementById(`dialog-${id}`)
     dialog.close()
+}
+
+export const sortData = (e) => {
+    e.preventDefault()
+
+    const cards = Array.from(document.getElementsByClassName('card'))
+
+    // Store total votes for each card in 'order' array.
+    const order = cards.map((card, idx) => {
+        return {
+            'id' : parseInt(card.id.split('-')[1]),
+            'votes' : parseInt(card.querySelector('.total-votes').textContent)
+        }
+    })
+
+    const formDataInput = new FormData(e.target).get('sort-option')
+
+    const sortedArr = formDataInput === 'ascending' ? quickSort(order) : quickSort(order, true)
+
+    const newOrder = sortedArr.map((item) => {
+        return document.getElementById(`card-${item.id}`)
+    })
+
+    // Update cards
+    document.querySelector('main').replaceChildren(...newOrder)
+
 }
