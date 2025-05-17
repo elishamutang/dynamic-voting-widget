@@ -1,4 +1,4 @@
-import quickSort from '../../scripts/quicksort.js'
+import quickSort from '../scripts/quicksort.js'
 
 export const voteHandler = (e) => {
     const voteBtnsDiv = e.currentTarget.parentElement

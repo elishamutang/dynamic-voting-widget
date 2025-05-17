@@ -310,3 +310,7 @@ dialog[open] {
         }
     }
 }
+
+#error {
+    margin-top: 2rem;
+}

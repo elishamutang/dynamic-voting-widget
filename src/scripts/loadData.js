@@ -9,6 +9,6 @@ export async function getData() {
 
         return await response.json()
     } catch(error) {
-        console.log(error.message);
+        console.error(error.message);
     }
 }
