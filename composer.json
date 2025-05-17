@@ -1,5 +1,8 @@
 {
     "require": {
         "twig/twig": "^3.0"
+    },
+    "require-dev": {
+        "symfony/symfony": "^7.2"
     }
 }

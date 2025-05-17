@@ -20,7 +20,7 @@ export default function CardComp(id, data) {
             <div class="action-btns">
                 <a class="button cta" href=${data.button.url} target="_blank">${data.button.label}</a>
                 <dialog closedby="closerequest" id="dialog-${id}">
-                    <form class="edit-content" action="/" id="form-${id}" method="dialog">
+                    <form class="edit-content" action="/public" id="form-${id}" method="dialog">
                         <div class="form-header">
                             <h2 class="modal-title">Edit Card</h2>
                             <button type="button" class="reset-data">Reset</button>
