@@ -1,7 +1,8 @@
 import { getData } from './loadData.js'
 import CardComp from '../components/card/card.js'
 import LoaderComp from '../components/loader/loader.js'
-import * as cardController from '../controllers/card/cardController.js'
+import ErrorComp from '../components/error/error.js'
+import * as cardController from '../controllers/cardController.js'
 
 document.addEventListener('DOMContentLoaded', async (e) => {
     console.log('DOM fully parsed')
@@ -72,12 +73,19 @@ document.addEventListener('DOMContentLoaded', async (e) => {
 
 
     } catch (error) {
+        console.error(error)
+
         // Display error page.
-        console.error(error.message)
+        const errorView = [ErrorComp()]
+        document.querySelector('body').replaceChildren(...errorView)
+
     } finally {
         // Remove loader and enable form
-        document.getElementById('loader').remove()
-        document.getElementById('sort-option').disabled = false
-        document.getElementById('sort').querySelector('button').disabled = false
+        if(document.getElementById('loader')) {
+            document.getElementById('loader').remove()
+            document.getElementById('sort-option').disabled = false
+            document.getElementById('sort').querySelector('button').disabled = false
+        }
+
     }
 })
