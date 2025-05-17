@@ -1,5 +1,6 @@
 import { getData } from './loadData.js'
 import CardComp from '../components/card/card.js'
+import LoaderComp from '../components/loader/loader.js'
 import * as cardController from '../controllers/card/cardController.js'
 
 document.addEventListener('DOMContentLoaded', async (e) => {
@@ -11,6 +12,12 @@ document.addEventListener('DOMContentLoaded', async (e) => {
     // Load data.
     try {
         // Add loader
+        main.append(LoaderComp())
+
+        // Disable sorting while loading
+        document.getElementById('sort-option').disabled = true
+        document.getElementById('sort').querySelector('button').disabled = true
+
         const data = await getData()
         console.log(data)
 
@@ -61,15 +68,16 @@ document.addEventListener('DOMContentLoaded', async (e) => {
         })
 
         // Sorting
-        Array.from(document.getElementsByClassName('sort')).forEach((elem) => {
-            elem.addEventListener('submit', cardController.sortData)
-        })
+        document.getElementById('sort').addEventListener('submit', cardController.sortData)
 
 
     } catch (error) {
         // Display error page.
         console.error(error.message)
     } finally {
-        // Remove loader
+        // Remove loader and enable form
+        document.getElementById('loader').remove()
+        document.getElementById('sort-option').disabled = false
+        document.getElementById('sort').querySelector('button').disabled = false
     }
 })
