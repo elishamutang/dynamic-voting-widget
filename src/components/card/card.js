@@ -26,17 +26,17 @@ export default function CardComp(id, data) {
                             <button type="button" class="reset-data">Reset</button>
                         </div>
                         
-                        <label for="title">Title: </label>
-                        <input type="text" name="title" value="${data.title}" required maxlength="20"/>
+                        <label for="title-${id}">Title: </label>
+                        <input type="text" name="title" id="title-${id}" value="${data.title}" required maxlength="20"/>
                         
-                        <label for="description">Description: </label>
-                        <input type="text" name="description" value="${data.description}" required/>
+                        <label for="description-${id}">Description: </label>
+                        <input type="text" name="description" id="description-${id}" value="${data.description}" required/>
                         
-                        <label for="button-label">Button Label: </label>
-                        <input type="text" name="buttonLabel" value="${data.button.label}" required maxlength="50"/>
+                        <label for="button-label-${id}">Button Label: </label>
+                        <input type="text" name="buttonLabel" id="button-label-${id}" value="${data.button.label}" required maxlength="30"/>
                         
-                        <label for="button-link">Button Link: </label>
-                        <input type="url" name="buttonUrl" value="${data.button.url}" required/>
+                        <label for="button-link-${id}">Button Link: </label>
+                        <input type="url" name="buttonUrl" id="button-link-${id}" value="${data.button.url}" required/>
                         
                         <div class="form-btns">
                             <button type="submit" class="save-changes">Save</button>
