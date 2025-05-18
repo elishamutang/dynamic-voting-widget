@@ -1,7 +1,7 @@
 import { getData } from './loadData.js'
-import CardComp from '../components/card/card.js'
-import LoaderComp from '../components/loader/loader.js'
-import ErrorComp from '../components/error/error.js'
+import CardComp from '../components/card.js'
+import LoaderComp from '../components/loader.js'
+import ErrorComp from '../components/error.js'
 import * as cardController from '../controllers/cardController.js'
 
 document.addEventListener('DOMContentLoaded', async (e) => {
