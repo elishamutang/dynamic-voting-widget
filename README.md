@@ -25,7 +25,7 @@ by *upvoting* or *downvoting* the ideas, and when a change is needed, they can e
 
 ## Installation
 1. Fork / clone this repo.
-2. Run `composer install`.
+2. Run `composer install` and `npm install`.
 3. Run `symfony server:start` command to access via local web server.
 
 ## Final Product
